@@ -8,5 +8,9 @@
   "private": true,
   "devDependencies": {
     "@now/node": "^1.5.1"
+  },
+  "dependencies": {
+    "@types/airtable": "^0.5.7",
+    "airtable": "^0.8.1"
   }
 }
