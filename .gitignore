@@ -1,10 +1,2 @@
-/.gradle
-/.idea
-/out
-/build
-/node_modules
-/.serverless
-*.iml
-*.ipr
-*.iws
-.history
+node_modules
+.now
