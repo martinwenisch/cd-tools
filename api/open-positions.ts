@@ -26,10 +26,10 @@ interface Position {
 export default async (req: NowRequest, res: NowResponse) => {
   try {
     const apiKey = process.env.AIRTABLE_API_KEY as string;
-    const table = new Airtable({ apiKey }).base("apppZX1QC3fl1RTBM")(
-      "Hledané role a úkoly - To Be Moved"
+    const table = new Airtable({ apiKey }).base("appDh1gAClWbLC3xn")(
+      "Otevřené role"
     );
-    const records = await table.select({ view: "Otevřené role" }).all();
+    const records = await table.select({ view: "Grid view" }).all();
     const out = JSON.stringify(records.map(parseRecord), null, 2);
     // We don’t use res.json() here intentionally to get pretty printing
     res.setHeader("Content-Type", "application/json");
