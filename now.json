@@ -13,10 +13,6 @@
         {
             "source": "/list-users",
             "destination": "/api/list-users"
-        },
-        {
-            "source": "/rsvp",
-            "destination": "/api/rsvp"
         }
     ]
 }

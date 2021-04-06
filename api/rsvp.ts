@@ -27,7 +27,7 @@ export default async (req: NowRequest, res: NowResponse) => {
       "Volunteers"
     );
     await table.update(recordId, { rsvp_test_zoul: true });
-    res.status(204).send("Resource updated");
+    res.status(200).send("Díky, budeme se těšit!");
   } catch (e) {
     // TBD: Remove error logging before production deployment
     res.status(500).send(`Error: ${e}`);

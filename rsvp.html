@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <title>RSVP</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            margin-top: 30vh;
+        }
+        form {
+            display: inline-block;
+        }
+        input[type='submit'] {
+            background-color: blue;
+            border-color: blue;
+        }
+    </style>
+  </head>
+  <body>
+    <form action="/api/rsvp" method="POST">
+        <input type="hidden" name="recordId" value="rec4b907aoEJcQmaT">
+        <input type="submit" value="Dondu!"></input>
+    </form>
+    <script>
+        const url = new URL(window.location.href);
+        const idInput = document.querySelector("input[name='recordId']");
+        idInput.value = url.searchParams.get("recordId");
+    </script>
+  </body>
+</html>
