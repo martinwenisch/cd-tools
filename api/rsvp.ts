@@ -39,7 +39,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     // https://community.airtable.com/t/append-linked-record-using-api/39420
     const event = (await table.find(eventId)) as Airtable.Record<Event>;
     await table.update(eventId, {
-      Attendees: event.fields["Attendees"].concat([userId]),
+      Attendees: unique(event.fields["Attendees"].concat([userId])),
     });
     res.status(200).send("Díky, budeme se těšit!");
   } catch (e) {
@@ -47,3 +47,13 @@ export default async (req: NowRequest, res: NowResponse) => {
     res.status(500).send(`Error: ${e}`);
   }
 };
+
+function unique<T>(array: T[]): T[] {
+  var a = array.concat();
+  for (var i = 0; i < a.length; ++i) {
+    for (var j = i + 1; j < a.length; ++j) {
+      if (a[i] === a[j]) a.splice(j--, 1);
+    }
+  }
+  return a;
+}
