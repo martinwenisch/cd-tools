@@ -35,8 +35,10 @@ export default async (req: NowRequest, res: NowResponse) => {
     const table = new Airtable({ apiKey: apiToken }).base("apppZX1QC3fl1RTBM")(
       "RSVP"
     );
-    // TBD: Is this a race condition?
+    // TBD: Is this a race condition? It probably is:
     // https://community.airtable.com/t/append-linked-record-using-api/39420
+    // Would the window for trouble be smaller if we wrote to the User database
+    // instead of events?
     const event = (await table.find(eventId)) as Airtable.Record<Event>;
     const attendees = event.fields["Attendees"] || [];
     if (!attendees.includes(userId)) {
