@@ -38,8 +38,9 @@ export default async (req: NowRequest, res: NowResponse) => {
     // TBD: Is this a race condition?
     // https://community.airtable.com/t/append-linked-record-using-api/39420
     const event = (await table.find(eventId)) as Airtable.Record<Event>;
+    const attendees = event.fields["Attendees"] || [];
     await table.update(eventId, {
-      Attendees: unique(event.fields["Attendees"].concat([userId])),
+      Attendees: unique([userId].concat(attendees)),
     });
     res.status(200).send("Díky, budeme se těšit!");
   } catch (e) {
