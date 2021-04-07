@@ -15,9 +15,9 @@ export default async (req: NowRequest, res: NowResponse) => {
 
   // POST: Update RSVP
   try {
-    const recordId = req.body.recordId;
-    if (!recordId) {
-      throw "Required 'recordId' argument missing.";
+    const userId = req.body.userId;
+    if (!userId) {
+      throw "Required 'userId' argument missing.";
     }
     const apiToken = process.env.AIRTABLE_API_KEY;
     if (!apiToken) {
@@ -26,7 +26,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     const table = new Airtable({ apiKey: apiToken }).base("apppZX1QC3fl1RTBM")(
       "Volunteers"
     );
-    await table.update(recordId, { rsvp_test_zoul: true });
+    await table.update(userId, { rsvp_test_zoul: true });
     res.status(200).send("Díky, budeme se těšit!");
   } catch (e) {
     // TBD: Remove error logging before production deployment
