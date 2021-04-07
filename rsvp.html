@@ -22,12 +22,13 @@
   <body>
     <form action="/api/rsvp" method="POST">
         <input type="hidden" name="userId" value="">
+        <input type="hidden" name="eventId" value="">
         <input type="submit" value="Dondu!™"></input>
     </form>
     <script>
         // Copy GET params to hidden form inputs
         const url = new URL(window.location.href);
-        const args = ['userId'];
+        const args = ['userId', 'eventId'];
         for (const arg of args) {
           const input = document.querySelector(`input[name='${arg}']`);
           if (input) {
