@@ -3,7 +3,7 @@ import Airtable from "airtable";
 
 interface Event {
   Name: string | undefined;
-  Attendees: string[];
+  Attendees: string[] | undefined;
 }
 
 export default async (req: NowRequest, res: NowResponse) => {
@@ -39,22 +39,14 @@ export default async (req: NowRequest, res: NowResponse) => {
     // https://community.airtable.com/t/append-linked-record-using-api/39420
     const event = (await table.find(eventId)) as Airtable.Record<Event>;
     const attendees = event.fields["Attendees"] || [];
-    await table.update(eventId, {
-      Attendees: unique([userId].concat(attendees)),
-    });
+    if (!attendees.includes(userId)) {
+      await table.update(eventId, {
+        Attendees: attendees.concat([userId]),
+      });
+    }
     res.status(200).send("Díky, budeme se těšit!");
   } catch (e) {
     // TBD: Remove error logging before production deployment
     res.status(500).send(`Error: ${e}`);
   }
 };
-
-function unique<T>(array: T[]): T[] {
-  var a = array.concat();
-  for (var i = 0; i < a.length; ++i) {
-    for (var j = i + 1; j < a.length; ++j) {
-      if (a[i] === a[j]) a.splice(j--, 1);
-    }
-  }
-  return a;
-}
