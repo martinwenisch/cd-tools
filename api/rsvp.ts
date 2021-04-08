@@ -10,11 +10,34 @@ export default async (req: NowRequest, res: NowResponse) => {
   // Only GET or POST supported
   if (req.method !== "GET" && req.method !== "POST") {
     res.status(501).send("Not implemented");
+    return;
   }
+
+  const apiToken = process.env.AIRTABLE_API_KEY;
+  if (!apiToken) {
+    res.status(500).send("Airtable API key not found in env.");
+    return;
+  }
+
+  const table = new Airtable({ apiKey: apiToken }).base("apppZX1QC3fl1RTBM")(
+    "RSVP"
+  );
 
   // GET: return event details
   if (req.method === "GET") {
-    res.status(501).send("Not implemented yet. Pull requests welcome!");
+    const eventId = req.query.eventId;
+    if (!eventId || Array.isArray(eventId)) {
+      res.status(400).send("Required 'eventId' argument missing.");
+      return;
+    }
+    const event = (await table.find(eventId)) as Airtable.Record<Event>;
+    const fields = {
+      name: event.fields.Name,
+    };
+    // We don’t use res.json() here intentionally to get pretty printing
+    const out = JSON.stringify(fields, null, 2);
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).send(out);
     return;
   }
 
@@ -22,19 +45,14 @@ export default async (req: NowRequest, res: NowResponse) => {
   try {
     const userId = req.body.userId;
     if (!userId) {
-      throw "Required 'userId' argument missing.";
+      res.status(400).send("Required 'userId' argument missing.");
+      return;
     }
     const eventId = req.body.eventId;
     if (!eventId) {
-      throw "Required 'eventId' argument missing.";
+      res.status(400).send("Required 'eventId' argument missing.");
+      return;
     }
-    const apiToken = process.env.AIRTABLE_API_KEY;
-    if (!apiToken) {
-      throw "Airtable API key not found in env.";
-    }
-    const table = new Airtable({ apiKey: apiToken }).base("apppZX1QC3fl1RTBM")(
-      "RSVP"
-    );
     // TBD: Is this a race condition? It probably is:
     // https://community.airtable.com/t/append-linked-record-using-api/39420
     // Would the window for trouble be smaller if we wrote to the User database
