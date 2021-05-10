@@ -4,7 +4,7 @@ Sbírka serverových skriptů pro různé menší úkoly.
 
 ## Instalace a vývoj
 
-- Nasazuje se jako [serverless funkce ve Vercel](https://vercel.com/docs/v2/serverless-functions/introduction). K vývoji se hodí mít [Vercel CLI](https://vercel.com/cli).
+- Nasazuje se jako [serverless funkce ve Vercel](https://vercel.com/docs/serverless-functions/introduction). K vývoji se hodí mít [Vercel CLI](https://vercel.com/cli).
 - Projekt je v [Node.js](https://nodejs.org/). Potřebná verze Node.js se odvíjí od toho, [jakou zrovna používá Vercel](https://vercel.com/docs/runtimes#official-runtimes/node-js/node-js-version).
 - Je potřeba mít [yarn](https://yarnpkg.com/getting-started/install) a [TypeScript](https://www.typescriptlang.org/).
 - Závislosti se instalují `yarn`
