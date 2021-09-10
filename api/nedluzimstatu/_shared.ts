@@ -3,6 +3,7 @@ import * as express from "express";
 
 const corsAllowedOrigins = [
   "https://www.nedluzimstatu.cz",
+  "https://staging.nedluzimstatu.cz",
   "https://nedluzimstatu.ceskodigital.net",
 ];
 const corsAllowedHeaders = "Origin, X-Requested-With, Content-Type, Accept";
