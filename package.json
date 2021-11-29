@@ -17,7 +17,7 @@
     "csv-stringify": "^5.5.0",
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.6",
-    "node-fetch": "^3.1.0",
+    "node-fetch": "^2.0.0",
     "slack": "^11.0.2"
   }
 }
