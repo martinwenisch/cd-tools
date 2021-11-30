@@ -5,7 +5,9 @@
         {
             "src": "/(.*)",
             "status": 301,
-            "headers": { "Location": "https://cesko.digital/$1" }
+            "headers": {
+                "Location": "https://cesko.digital/$1"
+            }
         }
     ],
     "alias": [
@@ -28,5 +30,8 @@
         "www.czechiadigital.cz",
         "www.nedluzimstatu.cz",
         "nedluzimstatu.cz"
-    ]
+    ],
+    "github": {
+        "silent": true
+    }
 }

@@ -1,9 +1,4 @@
 {
-    "env": {
-        "AIRTABLE_API_KEY": "@airtable-api-key",
-        "APITALKS_API_KEY": "@apitalks-api-key",
-        "SLACK_TOKEN": "@slack-token"
-    },
     "redirects": [
         {
             "source": "/",
