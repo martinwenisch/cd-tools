@@ -1,6 +1,8 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import fetch from "node-fetch";
 
+const https = require('https');
+
 export default async (
   request: VercelRequest,
   response: VercelResponse
@@ -12,8 +14,27 @@ export default async (
   }
 
   const params = new URLSearchParams({ response_hook });
-  const root = process.env.VERCEL_URL;
-  await fetch(`https://${root}/api/web_deploy/trigger?${params}`);
+  let options = {
+    hostname: process.env.VERCEL_URL,
+    method: 'GET',
+    path: `/api/web_deploy/trigger?${params}`,
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': 0,
+    },
+  };
+
+  await new Promise((resolve, reject) => {
+    let req = https.request(options);
+    req.on('error', (e: Error) => {
+      console.error(`Problem with request: ${e.message}`);
+      reject(e);
+    });
+    req.end(() => {
+      console.log("Passed to /api/web_deploy/trigger");
+      resolve();
+    });
+  });
 
   response
     .status(200)
