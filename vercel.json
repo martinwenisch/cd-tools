@@ -19,5 +19,8 @@
             "source": "/api/nedluzimstatu/ovm/(.*)",
             "destination": "/api/nedluzimstatu/ovm"
         }
-    ]
+    ],
+    "github": {
+        "silent": true
+    }
 }
