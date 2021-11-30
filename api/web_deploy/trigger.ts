@@ -27,7 +27,7 @@ export default async (
   if (vercel_response.ok) {
     const text =
       "Deployment už frčí! Za pár minut by měla naskočit nová verze webu.";
-    fetch(response_hook, {
+    await fetch(response_hook, {
       method: "POST",
       body: JSON.stringify({ text }),
       headers: { "Content-Type": "application/json" },
