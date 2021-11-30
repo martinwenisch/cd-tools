@@ -11,11 +11,12 @@ export default async (
     return;
   }
 
-  const params = new URLSearchParams({ response_hook });
-  const root = process.env.VERCEL_URL;
-  fetch(`https://${root}/api/web_deploy/trigger?${params}`).catch(
-    console.error
-  );
+  setTimeout(async () => {
+    const params = new URLSearchParams({ response_hook });
+    const root = process.env.VERCEL_URL;
+    await fetch(`https://${root}/api/web_deploy/trigger?${params}`);
+    console.log("Nice!");
+  }, 2000);
 
   response
     .status(200)
