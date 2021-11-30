@@ -12,7 +12,7 @@ export default async (
   }
 
   const params = new URLSearchParams({ response_hook });
-  fetch(`/api/web_deploy/trigger?${params}`).catch(console.error);
+  await fetch(`/api/web_deploy/trigger?${params}`);
 
   response
     .status(200)
