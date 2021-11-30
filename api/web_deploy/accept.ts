@@ -13,7 +13,9 @@ export default async (
 
   const params = new URLSearchParams({ response_hook });
   const root = process.env.VERCEL_URL;
-  await fetch(`https://${root}/api/web_deploy/trigger?${params}`);
+  fetch(`https://${root}/api/web_deploy/trigger?${params}`).catch(
+    console.error
+  );
 
   response
     .status(200)
