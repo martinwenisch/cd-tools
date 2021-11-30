@@ -11,7 +11,7 @@ export default async (
     if (vercel_response.ok) {
       response
         .status(200)
-        .send("Už to frčí, detaily tady: https://cesko.digital/_logs");
+        .send("Už to frčí 🥳 Nová verze webu by měla být za pár minut.");
     } else {
       response.status(500).send("Je to rozbitý, Vercel vrátil chybu :(");
     }
