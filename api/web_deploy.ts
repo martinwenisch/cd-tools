@@ -5,10 +5,10 @@ export default async (
   request: VercelRequest,
   response: VercelResponse
 ): Promise<void> => {
-  const deploy_url = process.env.VERCEL_DEPLOY_HOOK_URL;
+  const deploy_hook = process.env.VERCEL_DEPLOY_HOOK_URL;
   const response_hook = request.body.response_url as string;
 
-  if (!deploy_url) {
+  if (!deploy_hook) {
     response
       .status(500)
       .send(
@@ -26,14 +26,14 @@ export default async (
     .status(200)
     .send("Potvrzuju příjem, domlouvám s Vercelem přenasazení webu, moment…");
 
-  const deploy_response = await fetch(deploy_url);
+  const deploy_response = await fetch(deploy_hook);
   const msg = deploy_response.ok
     ? "Už to frčí 🥳  Za pár minut by se měla objevit nová verze webu."
     : "Je to rozbitý, Vercel vrátil chybu :(";
 
   await fetch(response_hook, {
-    method: "POST",
-    body: JSON.stringify({ text: msg, replace_original: true }),
+    method: "post",
+    body: JSON.stringify({ text: msg }),
     headers: { "Content-Type": "application/json" },
   });
 };
