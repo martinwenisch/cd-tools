@@ -6,7 +6,7 @@ export default async (
   response: VercelResponse
 ): Promise<void> => {
   const deploy_url = process.env.VERCEL_DEPLOY_HOOK_URL;
-  const response_hook = request.query.response_url as string;
+  const response_hook = request.body.response_url as string;
 
   if (!deploy_url) {
     response
