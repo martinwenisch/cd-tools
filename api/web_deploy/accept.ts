@@ -12,7 +12,8 @@ export default async (
   }
 
   const params = new URLSearchParams({ response_hook });
-  await fetch(`/api/web_deploy/trigger?${params}`);
+  const root = process.env.VERCEL_URL;
+  await fetch(`https://${root}/api/web_deploy/trigger?${params}`);
 
   response
     .status(200)
