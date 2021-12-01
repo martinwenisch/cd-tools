@@ -1,6 +1,8 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import fetch from "node-fetch";
 
+const https = require('https');
+
 export default async (
   request: VercelRequest,
   response: VercelResponse
@@ -35,6 +37,30 @@ export default async (
       body: JSON.stringify({ text }),
       headers: { "Content-Type": "application/json" },
     });
+
+    let body = await deploy_response.json()
+    console.log("job.createdAt:", body.job.createdAt)
+
+    const params = new URLSearchParams({ webhook_url: webhook_url, start_time: body.job.createdAt });
+    let options = {
+      hostname: process.env.VERCEL_URL,
+      method: 'GET',
+      path: `/api/web_deploy/check?${params}`,
+      headers: { 'Content-Type': 'application/json', 'Content-Length': 0 },
+    };
+
+    await new Promise((resolve, reject) => {
+      let req = https.request(options);
+      req.on('error', (e: Error) => {
+        console.error(`Request error: ${e.message}`);
+        reject(e);
+      });
+      req.end(() => {
+        console.log("Request passed to /api/web_deploy/check");
+        resolve();
+      });
+    });
+
     response.status(200).send(text);
   } else {
     console.error(JSON.stringify(deploy_response))
