@@ -6,19 +6,18 @@ export default async (
   response: VercelResponse
 ): Promise<void> => {
   const deploy_url = process.env.VERCEL_DEPLOY_HOOK_URL;
-  const response_url = request.query.response_url as string;
+  const webhook_url = request.query.webhook_url as string;
   const delay = request.query.delay as string;
 
   if (!deploy_url) {
-    const msg =
-      "Služba je špatně nastavená, v prostředí chybí proměnná VERCEL_DEPLOY_HOOK_URL.";
+    const msg = "Služba je špatně nastavená, v prostředí chybí proměnná VERCEL_DEPLOY_HOOK_URL.";
     console.error(msg);
     response.status(500).send(msg);
     return;
   }
 
-  if (!response_url) {
-    const msg = "Chybí parametr response_url.";
+  if (!webhook_url) {
+    const msg = "Chybí parametr webhook_url.";
     console.error(msg);
     response.status(400).send(msg);
     return;
@@ -28,17 +27,17 @@ export default async (
     await new Promise(resolve => setTimeout(resolve, 5000));
   }
 
-  const vercel_response = await fetch(deploy_url);
-  if (vercel_response.ok) {
+  const deploy_response = await fetch(deploy_url);
+  if (deploy_response.ok) {
     const text = "Deployment už frčí! Za pár minut by měla naskočit nová verze webu.";
-    await fetch(response_url, {
+    await fetch(webhook_url, {
       method: "POST",
       body: JSON.stringify({ text }),
       headers: { "Content-Type": "application/json" },
     });
     response.status(200).send(text);
   } else {
-    console.error(JSON.stringify(vercel_response))
+    console.error(JSON.stringify(deploy_response))
     response.status(500).send("Je to rozbitý, Vercel vrátil chybu :(");
   }
 };
