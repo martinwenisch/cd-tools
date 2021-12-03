@@ -7,6 +7,7 @@ export default async (
   request: VercelRequest,
   response: VercelResponse
 ): Promise<void> => {
+  // Webhook URL is typically coming from a Slack integration
   const webhook_url = request.body.webhook_url as string;
   const delay =  request.query ? request.query.delay as string : '';
 
@@ -19,6 +20,8 @@ export default async (
   if (typeof delay !== 'undefined' && delay.length > 0) {
     params.set("delay", delay);
   }
+
+  // Call the `web_deploy/trigger` without waiting for an answer
 
   let options = {
     hostname: process.env.VERCEL_URL,
@@ -38,6 +41,8 @@ export default async (
       resolve();
     });
   });
+
+  // Respond immediately to the caller
 
   response
     .status(200)
