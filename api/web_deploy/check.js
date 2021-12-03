@@ -42,11 +42,12 @@ module.exports = async (request, response) => {
 
   if (deployment) {
     let date = new Date(deployment.ready).toLocaleString("cs", { timeZone: 'Europe/Prague' });
-    const text = `Nová verze webu [${deployment.uid.replace('dpl_', '')}] nasazena ${date}`;
+    const deployment_url = `https://vercel.com/ceskodigital/web/${deployment.uid.replace('dpl_', '')}`;
+    const text = `:shipit: <${deployment_url}|Nová verze webu> nasazena ${date}.`;
     console.log(text)
     await fetch(webhook_url, {
       method: "POST",
-      body: JSON.stringify({ text }),
+      body: JSON.stringify({ type: "mrkdwn", text: text }),
       headers: { "Content-Type": "application/json" },
     });
     response.status(200).send(text)
