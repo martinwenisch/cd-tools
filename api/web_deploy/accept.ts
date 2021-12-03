@@ -8,7 +8,7 @@ export default async (
   response: VercelResponse
 ): Promise<void> => {
   // Webhook URL is typically coming from a Slack integration
-  const webhook_url = request.body.webhook_url as string;
+  const webhook_url = request.body.response_url as string;
   const delay =  request.query ? request.query.delay as string : '';
 
   if (!webhook_url) {
