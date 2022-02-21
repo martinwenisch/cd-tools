@@ -32,7 +32,7 @@ const Preview: React.FC<Props> = ({ html, mjml }) => {
     <div className="preview">
       <div className="preview-controls">
         {tabs.map((tab) => (
-          <>
+          <span key={tab.id}>
             <input
               type="radio"
               value={tab.id}
@@ -41,7 +41,7 @@ const Preview: React.FC<Props> = ({ html, mjml }) => {
               onChange={handleTabClick}
             />
             <label htmlFor={"tab-" + tab.id}>{tab.label}</label>
-          </>
+          </span>
         ))}
       </div>
 

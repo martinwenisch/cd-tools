@@ -1,6 +1,6 @@
 import { NextPage, GetStaticProps } from "next";
-import Editor from "src/components/editor";
-import Preview from "src/components/preview";
+import Editor from "src/editor";
+import Preview from "src/preview";
 import { useEffect, useState } from "react";
 import { markdownToMJML, renderMJML } from "src/mjml";
 import { readFileSync } from "fs";
