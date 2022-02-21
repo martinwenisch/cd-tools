@@ -2,6 +2,7 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkHtml from "remark-html";
 import { Content } from "mdast";
+import matter from "gray-matter";
 
 export type MJText = {
   type: "text";
@@ -34,6 +35,10 @@ export function markdownToMJML(
   markdown: string,
   styles: string | undefined = undefined
 ): MJDocument {
+  const { content, data } = matter(markdown);
+  const cover =
+    data.cover || "https://data.cesko.digital/web/metadata-cover.png";
+  const description = data.description || "‼️ TODO: Add post description";
   return {
     styles,
     sections: [
@@ -44,7 +49,7 @@ export function markdownToMJML(
         content: [
           {
             type: "image",
-            src: "https://data.cesko.digital/newsletter/31/cover.png", // TODO
+            src: cover,
             padding: "0",
           },
         ],
@@ -56,12 +61,12 @@ export function markdownToMJML(
         content: [
           {
             type: "text",
-            text: `<p>TBD: Add intro text support</p>`,
+            text: `<p>${description}</p>`,
           },
         ],
       },
       /* Post body */
-      ...parseMarkdownToSections(markdown),
+      ...parseMarkdownToSections(content),
       /* Footer */
       {
         fullWidth: true,
