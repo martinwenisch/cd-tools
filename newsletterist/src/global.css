@@ -61,7 +61,8 @@ label {
   height: 100%;
   padding: 0;
   margin: 0;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .preview-pane-mjml,
