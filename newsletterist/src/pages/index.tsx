@@ -1,6 +1,6 @@
 import { NextPage, GetStaticProps } from "next";
-import Editor from "components/editor";
-import Preview from "components/preview";
+import Editor from "src/components/editor";
+import Preview from "src/components/preview";
 import { useState } from "react";
 import { markdownToMJML, renderMJML } from "src/mjml";
 import { readFileSync } from "fs";
@@ -23,7 +23,7 @@ const Home: NextPage<Props> = ({ contentStyles }) => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const stylePath = join(resolve(process.cwd()), "components/content.css");
+  const stylePath = join(resolve(process.cwd()), "src/content.css");
   const contentStyles = readFileSync(stylePath, { encoding: "utf-8" });
   return {
     props: {
