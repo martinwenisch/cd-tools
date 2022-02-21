@@ -11,7 +11,7 @@ interface Props {
 const tabs = [
   { id: "mjml", label: "MJML" },
   { id: "html", label: "HTML" },
-  { id: "render", label: "náhled" },
+  { id: "render", label: "Náhled" },
 ];
 
 const Preview: React.FC<Props> = ({ html, mjml }) => {
