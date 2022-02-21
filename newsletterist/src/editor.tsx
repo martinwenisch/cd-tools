@@ -7,6 +7,7 @@ const Editor: React.FC<Props> = ({ onChange }) => {
     <textarea
       className="editor"
       onChange={(event) => onChange && onChange(event.target.value)}
+      placeholder="Sem napiš nebo vlož Markdown."
     />
   );
 };
