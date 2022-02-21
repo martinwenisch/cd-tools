@@ -1,7 +1,7 @@
 import { NextPage, GetStaticProps } from "next";
 import Editor from "src/components/editor";
 import Preview from "src/components/preview";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { markdownToMJML, renderMJML } from "src/mjml";
 import { readFileSync } from "fs";
 import { join, resolve } from "path";
@@ -12,12 +12,30 @@ interface Props {
 
 const Home: NextPage<Props> = ({ contentStyles }) => {
   const [source, setSource] = useState("");
-  const toMJML = (source: string) =>
-    renderMJML(markdownToMJML(source, contentStyles));
+  const [mjml, setMJML] = useState("");
+  const [html, setHTML] = useState("");
+
+  useEffect(() => {
+    const toMJML = (source: string) =>
+      renderMJML(markdownToMJML(source, contentStyles));
+    setMJML(toMJML(source));
+  }, [source, contentStyles]);
+
+  useEffect(() => {
+    async function updateHTMLPreview() {
+      const response = await fetch("/api/mjml", { method: "POST", body: mjml });
+      const html = response.ok
+        ? await response.text()
+        : "MJML conversion failed :(";
+      setHTML(html);
+    }
+    updateHTMLPreview();
+  }, [mjml]);
+
   return (
     <div>
       <Editor onChange={setSource} />
-      <Preview html={toMJML(source)} />
+      <Preview html={html} mjml={mjml} />
     </div>
   );
 };
