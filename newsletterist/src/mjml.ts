@@ -31,14 +31,32 @@ export interface MJDocument {
   sections: MJSection[];
 }
 
+function parseMetadata(markdown: string): {
+  cover: string;
+  description: string;
+  content: string;
+} {
+  const defaultCover = "https://data.cesko.digital/web/metadata-cover.png";
+  const defaultDescription = "‼️ TODO: Add post description";
+  try {
+    const { content, data } = matter(markdown);
+    const cover = data.cover || defaultCover;
+    const description = data.description || defaultDescription;
+    return { cover, description, content };
+  } catch (e) {
+    return {
+      cover: defaultCover,
+      description: defaultDescription,
+      content: markdown,
+    };
+  }
+}
+
 export function markdownToMJML(
   markdown: string,
   styles: string | undefined = undefined
 ): MJDocument {
-  const { content, data } = matter(markdown);
-  const cover =
-    data.cover || "https://data.cesko.digital/web/metadata-cover.png";
-  const description = data.description || "‼️ TODO: Add post description";
+  const { content, cover, description } = parseMetadata(markdown);
   return {
     styles,
     sections: [
