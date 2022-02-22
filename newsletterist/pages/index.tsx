@@ -1,5 +1,4 @@
 import { NextPage, GetStaticProps } from "next";
-import { markdownToMJML, renderMJML } from "src/mjml";
 import { readFileSync } from "fs";
 import { join, resolve } from "path";
 import Newsletterist from "src/newsletterist";
@@ -9,17 +8,8 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ contentStyles }) => {
-  const markdownToMjml = (markdown: string) =>
-    renderMJML(markdownToMJML(markdown, contentStyles));
-  return (
-    <Newsletterist markdownToMjml={markdownToMjml} mjmlToHtml={mjmlToHtml} />
-  );
+  return <Newsletterist contentStyles={contentStyles} />;
 };
-
-async function mjmlToHtml(mjml: string): Promise<string> {
-  const response = await fetch("/api/mjml", { method: "POST", body: mjml });
-  return response.ok ? await response.text() : "MJML conversion failed :(";
-}
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const stylePath = join(resolve(process.cwd()), "src/content.css");
