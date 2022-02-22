@@ -25,9 +25,6 @@ const Preview: React.FC<Props> = ({ html, mjml }) => {
       plugins: [parseHtml],
     });
 
-  const formattedHtml = format(html);
-  const formattedMjml = format(mjml);
-
   return (
     <div className="preview">
       <div className="preview-controls">
@@ -46,10 +43,10 @@ const Preview: React.FC<Props> = ({ html, mjml }) => {
       </div>
 
       {activeTab === "html" && (
-        <pre className="preview-pane preview-pane-html">{formattedHtml}</pre>
+        <pre className="preview-pane preview-pane-html">{format(html)}</pre>
       )}
       {activeTab === "mjml" && (
-        <pre className="preview-pane preview-pane-mjml">{formattedMjml}</pre>
+        <pre className="preview-pane preview-pane-mjml">{format(mjml)}</pre>
       )}
       {activeTab === "render" && (
         <Frame

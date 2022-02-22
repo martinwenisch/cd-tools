@@ -9,15 +9,15 @@ interface Props {
 
 const Newsletterist: React.FC<Props> = ({ mjmlToHtml, markdownToMjml }) => {
   const [markdown, setMarkdown] = useState("");
-  const [mjml, setMJML] = useState("");
-  const [html, setHTML] = useState("");
+  const [mjml, setMjml] = useState("");
+  const [html, setHtml] = useState("");
 
   useEffect(() => {
-    setMJML(markdownToMjml(markdown));
+    setMjml(markdownToMjml(markdown));
   }, [markdown, markdownToMjml]);
 
   useEffect(() => {
-    mjmlToHtml(mjml).then(setHTML);
+    mjmlToHtml(mjml).then(setHtml);
   }, [mjml, mjmlToHtml]);
 
   return (
