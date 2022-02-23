@@ -1,4 +1,11 @@
 {
+    "redirects": [
+        {
+            "source": "/",
+            "destination": "https://github.com/cesko-digital/cd-tools",
+            "statusCode": 302
+        }
+    ],
     "rewrites": [
         {
             "source": "/list-users",
