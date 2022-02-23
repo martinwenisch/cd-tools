@@ -33,20 +33,18 @@ export interface MJDocument {
 
 function parseMetadata(markdown: string): {
   cover: string;
-  description: string;
+  description?: string;
   content: string;
 } {
   const defaultCover = "https://data.cesko.digital/web/metadata-cover.png";
-  const defaultDescription = "‼️ TODO: Add post description";
   try {
     const { content, data } = matter(markdown);
     const cover = data.cover || defaultCover;
-    const description = data.description || defaultDescription;
+    const description = data.description;
     return { cover, description, content };
   } catch (e) {
     return {
       cover: defaultCover,
-      description: defaultDescription,
       content: markdown,
     };
   }
@@ -57,53 +55,65 @@ export function markdownToMJML(
   styles: string | undefined = undefined
 ): MJDocument {
   const { content, cover, description } = parseMetadata(markdown);
+  const bodySections = parseMarkdownToSections(content);
+  const sections = description
+    ? [
+        coverImageSection(cover),
+        introSection(description),
+        ...bodySections,
+        footerSection(),
+      ]
+    : [coverImageSection(cover), ...bodySections, footerSection()];
   return {
     styles,
-    sections: [
-      /* Cover image */
+    sections,
+  };
+}
+
+function coverImageSection(coverImageUrl: string): MJSection {
+  return {
+    fullWidth: true,
+    backgroundColor: "blue",
+    content: [
       {
-        fullWidth: true,
-        backgroundColor: "blue",
-        content: [
-          {
-            type: "image",
-            src: cover,
-            padding: "0",
-          },
-        ],
+        type: "image",
+        src: coverImageUrl,
+        padding: "0",
       },
-      /* Intro text */
+    ],
+  };
+}
+
+function introSection(text: string): MJSection {
+  return {
+    fullWidth: true,
+    backgroundColor: "#f3f3f3",
+    content: [
       {
-        fullWidth: true,
-        backgroundColor: "#f3f3f3",
-        content: [
-          {
-            type: "text",
-            text: `<p>${description}</p>`,
-          },
-        ],
+        type: "text",
+        text: `<p>${text}</p>`,
       },
-      /* Post body */
-      ...parseMarkdownToSections(content),
-      /* Footer */
+    ],
+  };
+}
+
+function footerSection(): MJSection {
+  return {
+    fullWidth: true,
+    backgroundColor: "#f3f3f3",
+    content: [
       {
-        fullWidth: true,
-        backgroundColor: "#f3f3f3",
-        content: [
-          {
-            type: "text",
-            fontSize: "14px",
-            color: "gray",
-            align: "center",
-            text: `<p>Už naše newslettery nechcete dostávat?<br>
-            <a href="*|UNSUB|*">Odhlásit se můžete zde</a>
-          </p>
-          <p>Česko.Digital<br>
-            Spěšného 391<br>
-            Roztoky 25263<br>
-            Česká republika</p>`,
-          },
-        ],
+        type: "text",
+        fontSize: "14px",
+        color: "gray",
+        align: "center",
+        text: `<p>Už naše newslettery nechcete dostávat?<br>
+        <a href="*|UNSUB|*">Odhlásit se můžete zde</a>
+      </p>
+      <p>Česko.Digital<br>
+        Spěšného 391<br>
+        Roztoky 25263<br>
+        Česká republika</p>`,
       },
     ],
   };
