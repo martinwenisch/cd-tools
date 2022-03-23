@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "name": "faktory-demo",
+  "dependencies": {
+    "faktory-worker": "^4.2"
+  }
+}

@@ -1,0 +1,9 @@
+tmp/
+
+demo/cert/
+demo/**/Gemfile.lock
+demo/**/package-lock.json
+demo/**/node_modules
+
+terraform/.terraform*
+terraform/*.tfstate*
