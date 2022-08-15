@@ -1,9 +1,12 @@
 {
-    "redirects": [
-        {
-            "source": "/",
-            "destination": "https://cesko.digital/join",
-            "statusCode": 301
-        }
-    ]
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://cesko.digital/join",
+      "statusCode": 301
+    }
+  ],
+  "github": {
+    "silent": true
+  }
 }
