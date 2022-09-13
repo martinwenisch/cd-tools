@@ -111,8 +111,8 @@ function footerSection(): MJSection {
         <a href="*|UNSUB|*">Odhlásit se můžete zde</a>
       </p>
       <p>Česko.Digital<br>
-        Spěšného 391<br>
-        Roztoky 25263<br>
+        Salvátorská 931/8<br>
+        Praha 1, 1100 00<br>
         Česká republika</p>`,
       },
     ],
