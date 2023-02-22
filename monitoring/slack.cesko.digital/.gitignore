@@ -1,7 +1,0 @@
-.DS_Store
-
-aws-lambda-rie-arm64
-package-lock.json
-
-node_modules/
-tmp/
