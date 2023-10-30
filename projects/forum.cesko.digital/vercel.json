@@ -1,8 +1,8 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
-      "destination": "https://diskutuj.digital/",
+      "source": "/:path",
+      "destination": "https://diskutuj.digital/:path",
       "statusCode": 301
     }
   ]
