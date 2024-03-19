@@ -1,3 +1,0 @@
-# Editor e-mailových rozesílek v Markdownu
-
-E-mailoví klienti jsou s webovými technologiemi sto let za opicemi, takže je potřeba jim jakýkoliv obsah hodně předžvýkat. Jedna možnost je použít vizuální editory nabízené e-mailingovými programy, ale ty jsou často… suboptimální *ahem*. Možnost editovat rozesílky v Markdownu nám proto přijde jako rozumný kompromis. Tenhle editor vezme zdrojový Markdown a vyrobí z něj HTML vhodné k rozesílce, například vložení do Ecomailu. Nasazeno na https://newsletter.cesko.dev.
