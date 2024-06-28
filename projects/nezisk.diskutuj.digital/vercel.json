@@ -1,0 +1,12 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://blog.cesko.digital/2024/03/cist-digital-56",
+      "statusCode": 302
+    }
+  ],
+  "github": {
+    "silent": true
+  }
+}
