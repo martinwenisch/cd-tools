@@ -35,6 +35,12 @@
       "destination": "https://pomahame.digital",
       "has": [{ "type": "host", "value": "xn--pomhme-rtab.digital" }],
       "statusCode": 302
+    },
+    {
+      "source": "/",
+      "destination": "https://anchor.fm/poslouchatdigital",
+      "has": [{ "type": "host", "value": "poslouchat.digital" }],
+      "statusCode": 301
     }
   ]
 }
