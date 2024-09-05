@@ -23,6 +23,12 @@
       "destination": "https://inkluze.cesko.digital/",
       "has": [{ "type": "host", "value": "vylouceni.cesko.digital" }],
       "statusCode": 302
+    },
+    {
+      "source": "/",
+      "destination": "https://cesko-digital.atlassian.net/wiki/spaces/SVR/pages/473052193/Co+se+n+m+povedlo+Inspirujte+se.",
+      "has": [{ "type": "host", "value": "urednik.digital" }],
+      "statusCode": 302
     }
   ]
 }
