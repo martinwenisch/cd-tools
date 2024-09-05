@@ -17,6 +17,12 @@
       "destination": "https://cesko-digital.atlassian.net/wiki/spaces/CD/overview",
       "has": [{ "type": "host", "value": "wiki.cesko.digital" }],
       "statusCode": 302
+    },
+    {
+      "source": "/",
+      "destination": "https://inkluze.cesko.digital/",
+      "has": [{ "type": "host", "value": "vylouceni.cesko.digital" }],
+      "statusCode": 302
     }
   ]
 }
