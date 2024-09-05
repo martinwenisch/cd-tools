@@ -1,4 +1,11 @@
 {
+  "rewrites": [
+    {
+      "source": "/:file",
+      "destination": "https://bbp30zne50ll9cz3.public.blob.vercel-storage.com/:file",
+      "has": [{ "type": "host", "value": "assets.cesko.digital" }]
+    }
+  ],
   "redirects": [
     {
       "source": "/",
