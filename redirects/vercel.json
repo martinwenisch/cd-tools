@@ -1,37 +1,16 @@
 {
-    "version": 2,
-    "name": "redirector",
-    "routes": [
-        {
-            "src": "/(.*)",
-            "status": 301,
-            "headers": {
-                "Location": "https://cesko.digital/$1"
-            }
-        }
-    ],
-    "alias": [
-        "www.cesko.digital",
-        "ceskodigital.cz",
-        "www.ceskodigital.cz",
-        "xn--esko-fua.digital",
-        "www.xn--esko-fua.digital",
-        "cesko.dev",
-        "www.cesko.dev",
-        "cesko.tech",
-        "www.cesko.tech",
-        "cesko.design",
-        "www.cesko.design",
-        "cech.tech",
-        "www.cech.tech",
-        "czech.tech",
-        "www.czech.tech",
-        "czechiadigital.cz",
-        "www.czechiadigital.cz",
-        "www.nedluzimstatu.cz",
-        "nedluzimstatu.cz"
-    ],
-    "github": {
-        "silent": true
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://www.cesko.digital",
+      "has": [{ "type": "host", "value": "cesko.dev" }],
+      "statusCode": 301
+    },
+    {
+      "source": "/",
+      "destination": "https://www.cesko.digital",
+      "has": [{ "type": "host", "value": "www.cesko.dev" }],
+      "statusCode": 301
     }
+  ]
 }
