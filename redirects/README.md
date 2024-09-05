@@ -1,1 +1,0 @@
-Tady je pouze konfigurační soubor Vercelu, který se stará o přesměrování různých našich alternativních a pracovních domén na hlavní web Česko.Digital.
