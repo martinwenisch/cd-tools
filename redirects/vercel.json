@@ -72,6 +72,18 @@
       "destination": "https://blog.cesko.digital/2024/08/cist-digital-61",
       "has": [{ "type": "host", "value": "cist.digital" }],
       "statusCode": 301
+    },
+    {
+      "source": "/",
+      "destination": "https://www.stojimezaukrajinou.cz",
+      "has": [{ "type": "host", "value": "szua.cz" }],
+      "statusCode": 301
+    },
+    {
+      "source": "/",
+      "destination": "https://www.stojimezaukrajinou.cz/ua",
+      "has": [{ "type": "host", "value": "pryvit.cz" }],
+      "statusCode": 301
     }
   ]
 }
