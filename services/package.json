@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Various Česko.Digital glue scripts",
   "repository": "https://github.com/cesko-digital/cd-tools.git",
-  "author": "Tomáš Znamenáček <tomas.znamenacek@gmail.com>",
+  "author": "Tomáš Znamenáček <zoul@cesko.digital>",
   "license": "MIT",
   "private": true,
   "devDependencies": {
@@ -14,11 +14,9 @@
     "dotenv": "^10.0.0"
   },
   "dependencies": {
-    "airtable": "^0.11.2",
     "csv-stringify": "^5.5.0",
     "express": "^4.19.2",
     "http-proxy-middleware": "^1.0.6",
-    "node-fetch": "2",
-    "slack": "^11.0.2"
+    "node-fetch": "2"
   }
 }
