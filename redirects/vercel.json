@@ -69,7 +69,7 @@
     },
     {
       "source": "/",
-      "destination": "https://blog.cesko.digital/2024/08/cist-digital-61",
+      "destination": "https://blog.cesko.digital/2024/09/cist-digital-62",
       "has": [{ "type": "host", "value": "cist.digital" }],
       "statusCode": 301
     },
