@@ -84,6 +84,12 @@
       "destination": "https://www.stojimezaukrajinou.cz/ua",
       "has": [{ "type": "host", "value": "pryvit.cz" }],
       "statusCode": 301
+    },
+    {
+      "source": "/",
+      "destination": "https://koncepce.knihovna.cz",
+      "has": [{ "type": "host", "value": "knihovny.digital" }],
+      "statusCode": 301
     }
   ]
 }
