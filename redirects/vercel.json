@@ -75,6 +75,12 @@
     },
     {
       "source": "/",
+      "destination": "https://www.cesko.digital/projekty/digitalni-partnerstvi/home",
+      "has": [{ "type": "host", "value": "digitalnipartnerstvi.cesko.digital" }],
+      "statusCode": 302
+    },
+    {
+      "source": "/",
       "destination": "https://blog.cesko.digital/2024/09/cist-digital-62",
       "has": [{ "type": "host", "value": "cist.digital" }],
       "statusCode": 301
