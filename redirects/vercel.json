@@ -1,12 +1,11 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/:file",
       "destination": "https://bbp30zne50ll9cz3.public.blob.vercel-storage.com/:file",
-      "has": [{ "type": "host", "value": "assets.cesko.digital" }]
-    }
-  ],
-  "redirects": [
+      "has": [{ "type": "host", "value": "assets.cesko.digital" }],
+      "statusCode": 302
+    },
     {
       "source": "/",
       "destination": "https://www.cesko.digital",
